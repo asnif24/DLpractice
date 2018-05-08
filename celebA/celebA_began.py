@@ -2,6 +2,9 @@ import tensorflow as tf
 import numpy as np
 import os
 import imageio
+#import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('PS')
 import matplotlib.pyplot as plt
 
 ls = np.array(os.listdir("./img_align_celeba"))
@@ -260,7 +263,7 @@ class Began(object):
             sess.run(self.g_optimizer, feed_dict={self.x_g: z_G})
             sess.run(self.update_k, feed_dict={self.x_d: batch_x, self.x_g: z_G})
 
-            if step%10==0 :
+            if step%500==0 :
                 self.showStatus(sess, batch_x, step)
 
 
@@ -268,5 +271,5 @@ class Began(object):
 
 if __name__ == '__main__':
     began = Began()
-    began.train(1000)
+    began.train(500000)
 
